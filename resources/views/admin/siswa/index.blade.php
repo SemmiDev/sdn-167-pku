@@ -61,6 +61,7 @@
                         <button
                             data-id="{{ $siswa->id }}"
                             data-nama="{{ $siswa->nama }}"
+                            data-kelas="{{ $siswa->kelas }}"
                             data-jenis_kelamin="{{ $siswa->jenis_kelamin }}"
                             data-alamat="{{ $siswa->alamat }}"
                             data-nama_ortu="{{ $siswa->nama_ortu }}"
@@ -201,7 +202,7 @@
 
                             <div>
                                 <label for="no_telepon_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Telepon</label>
-                                <input type="text" name="no_telepon" id="no_telepon_ortu_edit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
+                                <input type="text" name="no_telepon_ortu" id="no_telepon_ortu_edit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                                 {{ $errors->has('no_telepon') ? 'border-red-500' : '' }}" placeholder="08xxxxxxxxxx" required>
                             </div>
 

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email

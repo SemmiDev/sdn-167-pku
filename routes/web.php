@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('admin')->middleware(['auth', 'role:OPERATOR_SEKOLAH'])->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/guru', [App\Http\Controllers\Admin\GuruController::class, 'index'])->name('admin.guru.index');
     Route::post('/guru/store', [App\Http\Controllers\Admin\GuruController::class, 'store'])->name('admin.guru.store');
     Route::put('/guru/update/{guru}', [App\Http\Controllers\Admin\GuruController::class, 'update'])->name('admin.guru.update');
@@ -43,6 +43,12 @@ Route::prefix('admin')->middleware(['auth', 'role:OPERATOR_SEKOLAH'])->group(fun
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin.users.create');
     Route::post('/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.users.store');
     Route::delete('/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
+
+    Route::get('/komponen', [App\Http\Controllers\Admin\KomponenController::class, 'index'])->name('admin.komponen.index');
+    Route::post('/komponen/store', [App\Http\Controllers\Admin\KomponenController::class, 'store'])->name('admin.komponen.store');
+    Route::put('/komponen/update/{komponen}', [App\Http\Controllers\Admin\KomponenController::class, 'update'])->name('admin.komponen.update');
+    Route::delete('/komponen/destroy/{komponen}', [App\Http\Controllers\Admin\KomponenController::class, 'destroy'])->name('admin.komponen.destroy');
+
 })->middleware([\App\Http\Middleware\SummaryCountAdminMiddleware::class]);
 
 require __DIR__ . '/auth.php';

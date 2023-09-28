@@ -49,6 +49,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/komponen/update/{komponen}', [App\Http\Controllers\Admin\KomponenController::class, 'update'])->name('admin.komponen.update');
     Route::delete('/komponen/destroy/{komponen}', [App\Http\Controllers\Admin\KomponenController::class, 'destroy'])->name('admin.komponen.destroy');
 
+    Route::get('/atribut', [App\Http\Controllers\Admin\AtributController::class, 'index'])->name('admin.atribut.index');
+    Route::post('/atribut/store', [App\Http\Controllers\Admin\AtributController::class, 'store'])->name('admin.atribut.store');
+    Route::put('/atribut/update/{atribut}', [App\Http\Controllers\Admin\AtributController::class, 'update'])->name('admin.atribut.update');
+    Route::delete('/atribut/destroy/{atribut}', [App\Http\Controllers\Admin\AtributController::class, 'destroy'])->name('admin.atribut.destroy');
+
 })->middleware([\App\Http\Middleware\SummaryCountAdminMiddleware::class]);
 
 require __DIR__ . '/auth.php';

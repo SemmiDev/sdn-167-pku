@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('atribut', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->foreignId('id_komponen')->constrained('komponen')->onDelete('cascade');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

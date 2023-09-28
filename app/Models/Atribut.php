@@ -8,6 +8,7 @@ class Atribut extends BaseAtribut
 {
 	protected $fillable = [
 		'nama',
-		'keterangan'
+		'keterangan',
+		'id_komponen'
 	];
 }

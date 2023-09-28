@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Base\User as BaseUser;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends BaseUser
+class User extends Authenticatable
 {
-    use HasRoles, Authenticatable, HasFactory;
+    use HasRoles, HasFactory;
 
 	protected $hidden = [
 		'password',

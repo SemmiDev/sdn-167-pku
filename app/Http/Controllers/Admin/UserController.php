@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Base\Guru;
 use App\Models\ModelHasRole;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Support\Facades\Hash;
@@ -44,10 +45,58 @@ class UserController extends Controller
             UserRole::GURU_BK,
         ];
 
-        $daftarGuru = Guru::all();
+        $daftarGuru = Guru::whereNotIn('id', function ($query) {
+            $query->select('guru.id')
+                ->from('guru')
+                ->join('users', 'guru.email', '=', 'users.email');
+        })->get();
 
         return view('admin.users.create', compact('roles', 'daftarGuru'));
-}
+    }
+
+    public function editRole(User $user) {
+        $userRoles = ModelHasRole::where('model_id', $user->id)
+            ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->select('roles.name', 'roles.id')
+            ->get();
+
+        $roles = Role::all();
+
+        foreach ($roles as $role) {
+            $role->checked = $userRoles->contains('id', $role->id);
+        }
+
+        return view('admin.users.edit-role', compact('user',  'roles'));
+    }
+
+    public function editPassword(User $user) {
+        return view('admin.users.edit-password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, User $user) {
+        $request->validate([
+            'password' => ['required', Rules\Password::defaults()],
+        ]);
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return view('admin.users.credential', [
+            'email' => $user->email,
+            'password' => $request->password,
+        ])->with('success', 'Password berhasil diubah');
+    }
+
+    public function updateRole(Request $request, User $user) {
+        $request->validate([
+            'roles' => ['required'],
+        ]);
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('admin.users.index')->with('success', 'Role berhasil diubah');
+    }
 
     public function store(Request $request)
     {
@@ -81,7 +130,7 @@ class UserController extends Controller
 
             DB::commit();
             return view('admin.users.credential', [
-                'email'=> $user->email,
+                'email' => $user->email,
                 'password' => $request->password,
             ])->with('success', 'User berhasil ditambahkan');
         } catch (\Throwable $th) {
@@ -90,7 +139,8 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(User $user) {
+    public function destroy(User $user)
+    {
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User berhasil dihapus');
     }

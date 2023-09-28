@@ -41,7 +41,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin.users.create');
+    Route::get('/users/{user}/edit-password', [App\Http\Controllers\Admin\UserController::class, 'editPassword'])->name('admin.users.edit-password');
+    Route::get('/users/{user}/edit-role', [App\Http\Controllers\Admin\UserController::class, 'editRole'])->name('admin.users.edit-role');
     Route::post('/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/users/{user}/update-password', [App\Http\Controllers\Admin\UserController::class, 'updatePassword'])->name('admin.users.update-password');
+    Route::put('/users/{user}/update-role', [App\Http\Controllers\Admin\UserController::class, 'updateRole'])->name('admin.users.update-role');
     Route::delete('/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
 
     Route::get('/komponen', [App\Http\Controllers\Admin\KomponenController::class, 'index'])->name('admin.komponen.index');
@@ -53,6 +57,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/atribut/store', [App\Http\Controllers\Admin\AtributController::class, 'store'])->name('admin.atribut.store');
     Route::put('/atribut/update/{atribut}', [App\Http\Controllers\Admin\AtributController::class, 'update'])->name('admin.atribut.update');
     Route::delete('/atribut/destroy/{atribut}', [App\Http\Controllers\Admin\AtributController::class, 'destroy'])->name('admin.atribut.destroy');
+
+    Route::get('/pengumuman', [App\Http\Controllers\Admin\PengumumanController::class, 'index'])->name('admin.pengumuman.index');
+    Route::post('/pengumuman/store', [App\Http\Controllers\Admin\PengumumanController::class, 'store'])->name('admin.pengumuman.store');
+    Route::put('/pengumuman/update/{pengumuman}', [App\Http\Controllers\Admin\PengumumanController::class, 'update'])->name('admin.pengumuman.update');
+    Route::delete('/pengumuman/destroy/{pengumuman}', [App\Http\Controllers\Admin\PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
 
 })->middleware([\App\Http\Middleware\SummaryCountAdminMiddleware::class]);
 

@@ -51,12 +51,8 @@
                     </td>
 
                     <td class="px-6 py-4">
-                        <button
-                            data-id="{{ $user->id }}"
-                            data-jenis_kelamin="{{ $user->email }}"
-                            data-roles="{{ $user->roles }}"
-                            data-modal-target="edit-pengguna-modal"
-                            class="edit-guru w-20 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Edit</button>
+                        <a href="{{ route('admin.users.edit-role', $user->id) }}" class="w-20 mr-2 focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ubah Peran</a>
+                        <a href="{{ route('admin.users.edit-password', $user->id) }}" class="w-20 mr-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ubah Password</a>
                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="post" class="inline-block">
                             @csrf
                             @method('DELETE')

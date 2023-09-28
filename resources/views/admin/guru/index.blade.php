@@ -13,7 +13,13 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
+                    NO
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Nama
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Jenis Kelamin
@@ -33,8 +39,14 @@
             <tbody>
                 @foreach($daftarGuru as $guru)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4">
+                        {{ $loop->iteration }}
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $guru->nama }}
+                    </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $guru->email }}
                     </th>
                     <td class="px-6 py-4">
                         {{ $guru->jenis_kelamin }}
@@ -49,16 +61,17 @@
                         <button
                             data-id="{{ $guru->id }}"
                             data-nama="{{ $guru->nama }}"
+                            data-email="{{ $guru->email }}"
                             data-jenis_kelamin="{{ $guru->jenis_kelamin }}"
                             data-alamat="{{ $guru->alamat }}"
                             data-no_telepon="{{ $guru->no_telepon }}"
                             data-modal-target="edit-guru-modal"
                             data-modal-toggle="edit-guru-modal"
-                            class="edit-guru focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Edit</button>
+                            class="edit-guru w-20 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Edit</button>
                         <form action="{{ route('admin.guru.destroy', $guru->id) }}" method="post" class="inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="confirm-button focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
+                            <button type="submit" class="w-20 confirm-button focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
                         </form>
                     </td>
                 </tr>
@@ -84,6 +97,12 @@
                                 <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                 <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                                 {{ $errors->has('nama') ? 'border-red-500' : '' }}" placeholder="Susanti" required>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
+                                {{ $errors->has('email') ? 'border-red-500' : '' }}" placeholder="susanti@gmail.com" required>
                             </div>
 
                             <div>
@@ -143,6 +162,11 @@
                             </div>
 
                             <div>
+                                <label for="email_edit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="email" name="email" id="email_edit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+
+                            <div>
                                 <label for="jenis_kelamin_edit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
                                 <select name="jenis_kelamin" id="jenis_kelamin_edit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                                 {{ $errors->has('jenis_kelamin') ? 'border-red-500' : '' }}" required>
@@ -180,11 +204,13 @@
         $('.edit-guru').click(function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
+            var email = $(this).data('email');
             var jenis_kelamin = $(this).data('jenis_kelamin');
             var alamat = $(this).data('alamat');
             var no_telepon = $(this).data('no_telepon');
 
             $('#nama_edit').val(nama);
+            $('#email_edit').val(email);
             $('#jenis_kelamin_edit').val(jenis_kelamin);
             $('#alamat_edit').val(alamat);
             $('#no_telepon_edit').val(no_telepon);

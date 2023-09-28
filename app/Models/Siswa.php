@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Models\Base\Siswa as BaseSiswa;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends BaseSiswa
 {
+    use  HasFactory;
+
 	protected $fillable = [
 		'nama',
 		'kelas',

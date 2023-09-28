@@ -10,7 +10,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $daftarSiswa = Siswa::latest()->get();
+        $daftarSiswa = Siswa::orderBy('kelas')->get();
         return view('admin.siswa.index', compact('daftarSiswa'));
     }
 

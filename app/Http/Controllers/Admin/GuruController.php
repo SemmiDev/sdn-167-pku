@@ -20,11 +20,14 @@ class GuruController extends Controller
 
             $request->validate([
                 'nama' => 'required',
+                'email' => 'required|email|unique:users,email',
                 'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                 'alamat' => 'required',
                 'no_telepon' => 'required|starts_with:08',
             ], [
                 'nama.required' => 'Nama harus diisi',
+                'email.required' => 'Email harus diisi',
+                'email.email' => 'Email harus valid',
                 'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
                 'jenis_kelamin.in' => 'Jenis kelamin harus Laki-laki atau Perempuan',
                 'alamat.required' => 'Alamat harus diisi',
@@ -34,6 +37,7 @@ class GuruController extends Controller
 
             Guru::create([
                 'nama' => $request->nama,
+                'email' => $request->email,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'alamat' => $request->alamat,
                 'no_telepon' => $request->no_telepon,
@@ -57,11 +61,13 @@ class GuruController extends Controller
         try {
             $request->validate([
                 'nama' => 'required',
+                'email' => 'required|email|unique:users,email,' . $guru->id,
                 'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                 'alamat' => 'required',
                 'no_telepon' => 'required|starts_with:08',
             ], [
                 'nama.required' => 'Nama harus diisi',
+                'email.required' => 'Email harus diisi',
                 'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
                 'jenis_kelamin.in' => 'Jenis kelamin harus Laki-laki atau Perempuan',
                 'alamat.required' => 'Alamat harus diisi',
@@ -71,6 +77,7 @@ class GuruController extends Controller
 
             $guru->update([
                 'nama' => $request->nama,
+                'email' => $request->email,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'alamat' => $request->alamat,
                 'no_telepon' => $request->no_telepon,

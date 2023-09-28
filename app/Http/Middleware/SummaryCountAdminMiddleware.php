@@ -14,8 +14,11 @@ class SummaryCountAdminMiddleware
 
         $totalGuru = \App\Models\Guru::count();
         $totalSiswa = \App\Models\Siswa::count();
+        $totalUser = \App\Models\User::count();
+
         session()->put('totalGuru', $totalGuru);
         session()->put('totalSiswa', $totalSiswa);
+        session()->put('totalUser', $totalUser - 1);
 
         return $response;
     }

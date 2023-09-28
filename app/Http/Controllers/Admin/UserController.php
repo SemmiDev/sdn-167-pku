@@ -80,7 +80,10 @@ class UserController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan');
+            return view('admin.users.credential', [
+                'email'=> $user->email,
+                'password' => $request->password,
+            ])->with('success', 'User berhasil ditambahkan');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->withInput()->with('error', $th->getMessage());

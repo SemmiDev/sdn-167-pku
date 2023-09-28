@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('school')->nullable()->after('email_verified_at');
+        Schema::create('pengumuman', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->text('keterangan')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('school');
-        });
+        Schema::dropIfExists('pengumuman');
     }
 };

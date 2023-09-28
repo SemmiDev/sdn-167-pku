@@ -18,19 +18,19 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $superAdminRole = Role::create(['name' => UserRole::SUPER_ADMIN]);
-        $superAdminRole->givePermissionTo(Permission::all());
+        $operatorSekolah = Role::create(['name' => UserRole::OPERATOR_SEKOLAH]);
+        $operatorSekolah->givePermissionTo(Permission::all());
 
-        Role::create(['name' => UserRole::SCHOOL_ADMINISTRATOR]);
-        Role::create(['name' => UserRole::COUNSELOR_TEACHER]);
-        Role::create(['name' => UserRole::RELIGION_TEACHER]);
+        Role::create(['name' => UserRole::KEPALA_SEKOLAH]);
+        Role::create(['name' => UserRole::GURU_BK]);
+        Role::create(['name' => UserRole::GURU_PEMBIMBING]);
 
         $superAdmin = User::create([
-            'name' => 'kel-2',
-            'email' => 'kel-2@gmail.com',
-            'password' => bcrypt('12345678'),
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
         ]);
 
-        $superAdmin->assignRole($superAdminRole);
+        $superAdmin->assignRole($operatorSekolah);
     }
 }

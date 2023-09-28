@@ -14,10 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $nama
- * @property string $kelas
+ * @property int $kelas
  * @property string $jenis_kelamin
  * @property string|null $alamat
- * @property string|null $no_telepon
  * @property string|null $nama_ortu
  * @property string|null $no_telepon_ortu
  * @property Carbon|null $created_at
@@ -28,4 +27,8 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
 	protected $table = 'siswa';
+
+	protected $casts = [
+		'kelas' => 'int'
+	];
 }

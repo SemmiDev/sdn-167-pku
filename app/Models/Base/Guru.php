@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $nama
+ * @property string $email
  * @property string $jenis_kelamin
  * @property string|null $alamat
  * @property string|null $no_telepon

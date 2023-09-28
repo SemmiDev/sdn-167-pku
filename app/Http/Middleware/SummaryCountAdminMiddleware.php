@@ -18,6 +18,7 @@ class SummaryCountAdminMiddleware
         $totalKomponen = \App\Models\Komponen::count();
         $totalAtribut = \App\Models\Atribut::count();
         $totalPengumuman = \App\Models\Pengumuman::count();
+        $totalKategoriPengaduan = \App\Models\KategoriPengaduan::count();
 
         session()->put('totalUser', $totalUser - 1);
 
@@ -26,6 +27,7 @@ class SummaryCountAdminMiddleware
         session()->put('totalKomponen', $totalKomponen);
         session()->put('totalAtribut', $totalAtribut);
         session()->put('totalPengumuman', $totalPengumuman);
+        session()->put('totalKategoriPengaduan', $totalKategoriPengaduan);
 
         return $response;
     }

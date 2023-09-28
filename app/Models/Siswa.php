@@ -11,7 +11,6 @@ class Siswa extends BaseSiswa
 		'kelas',
 		'jenis_kelamin',
 		'alamat',
-		'no_telepon',
 		'nama_ortu',
 		'no_telepon_ortu'
 	];

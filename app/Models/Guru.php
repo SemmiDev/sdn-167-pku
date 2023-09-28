@@ -10,6 +10,6 @@ class Guru extends BaseGuru
 		'nama',
 		'jenis_kelamin',
 		'alamat',
-		'no_telepon',
+		'no_telepon'
 	];
 }

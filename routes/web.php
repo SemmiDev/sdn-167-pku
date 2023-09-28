@@ -67,6 +67,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/kategori-pengaduan/store', [App\Http\Controllers\Admin\KategoriPengaduanController::class, 'store'])->name('admin.kategori-pengaduan.store');
     Route::put('/kategori-pengaduan/update/{kategoriPengaduan}', [App\Http\Controllers\Admin\KategoriPengaduanController::class, 'update'])->name('admin.kategori-pengaduan.update');
     Route::delete('/kategori-pengaduan/destroy/{kategoriPengaduan}', [App\Http\Controllers\Admin\KategoriPengaduanController::class, 'destroy'])->name('admin.kategori-pengaduan.destroy');
+
+    Route::get('/pengaduan', [App\Http\Controllers\Admin\PengaduanController::class, 'index'])->name('admin.pengaduan.index');
+    Route::get('/pengaduan/create', [App\Http\Controllers\Admin\PengaduanController::class, 'create'])->name('admin.pengaduan.create');
+    Route::post('/pengaduan/store', [App\Http\Controllers\Admin\PengaduanController::class, 'store'])->name('admin.pengaduan.store');
+//    Route::put('/pengaduan/update/{pengaduan}', [App\Http\Controllers\Admin\PengaduanController::class, 'update'])->name('admin.pengaduan.update');
+//    Route::delete('/pengaduan/destroy/{pengaduan}', [App\Http\Controllers\Admin\PengaduanController::class, 'destroy'])->name('admin.pengaduan.destroy');
+
 })->middleware([\App\Http\Middleware\SummaryCountAdminMiddleware::class]);
 
 require __DIR__ . '/auth.php';

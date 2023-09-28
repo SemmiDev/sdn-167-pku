@@ -16,10 +16,12 @@ class SummaryCountAdminMiddleware
         $totalSiswa = \App\Models\Siswa::count();
         $totalUser = \App\Models\User::count();
         $totalKomponen = \App\Models\Komponen::count();
+        $totalAtribut = \App\Models\Atribut::count();
 
         session()->put('totalGuru', $totalGuru);
         session()->put('totalSiswa', $totalSiswa);
         session()->put('totalKomponen', $totalKomponen);
+        session()->put('totalAtribut', $totalAtribut);
         session()->put('totalUser', $totalUser - 1);
 
         return $response;

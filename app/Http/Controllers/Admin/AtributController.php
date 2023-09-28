@@ -17,6 +17,7 @@ class AtributController extends Controller
         $daftarAtribut = DB::table('atribut')
             ->join('komponen', 'atribut.id_komponen', '=', 'komponen.id')
             ->select('atribut.*', 'komponen.nama as nama_komponen')
+            ->orderBy('komponen.nama', 'asc')
             ->get();
 
         return view('admin.atribut.index', compact('daftarAtribut', 'daftarKomponen'));

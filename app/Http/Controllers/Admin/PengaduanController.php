@@ -46,8 +46,16 @@ class PengaduanController extends Controller
             'id_kategori' => $request->id_kategori,
             'foto' => $namaFoto,
             'keterangan' => $request->keterangan,
+            'status' => 'belum',
         ]);
 
         return redirect()->route('admin.pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan');
+    }
+
+    public function update(Request $request, Pengaduan $pengaduan) {
+        $pengaduan->status = $request->status;
+        $pengaduan->save();
+
+        return redirect()->route('admin.pengaduan.index')->with('success', 'Pengaduan berhasil diubah');
     }
 }

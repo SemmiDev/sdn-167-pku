@@ -33,7 +33,7 @@
                     Tanggal
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                    Aksi
+                    Status
                 </th>
             </tr>
             </thead>
@@ -63,7 +63,34 @@
                     <td class="px-6 py-4 text-center">
                         {{ $pengaduan->created_at->format('d M Y') }}
                     </td>
+{{--                    <td class="px-6 py-4 text-center">--}}
+{{--                        @php--}}
+{{--                        $status = 'Belum Diproses';--}}
+{{--                        if ($pengaduan->status == "proses") {--}}
+{{--                            $status = 'Sedang Diproses';--}}
+{{--                        } elseif ($pengaduan->status == "selesai") {--}}
+{{--                            $status = 'Selesai';--}}
+{{--                        }--}}
+{{--                        @endphp--}}
+
+{{--                        <span--}}
+{{--                            class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">--}}
+{{--                            {{ $status }}--}}
+{{--                        </span>--}}
+{{--                    </td>--}}
                     <td class="px-6 py-4 text-center">
+                        <form action="{{ route('admin.pengaduan.update', $pengaduan->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <select
+                                name="status"
+                                id="status"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="belum" {{ $pengaduan->status == 'belum' ? 'selected' : '' }}>Belum Diproses</option>
+                                <option value="proses" {{ $pengaduan->status == 'proses' ? 'selected' : '' }}>Sedang Diproses</option>
+                                <option value="selesai" {{ $pengaduan->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                            </select>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -79,6 +106,13 @@
     </div>
 
     <script type="text/javascript">
+        document.addEventListener("change", function (e) {
+            if (e.target && e.target.id == "status") {
+                const form = e.target.closest("form");
+                form.submit();
+            }
+        });
+
         // JavaScript to open the lightbox when an image is clicked
         document.addEventListener("click", function (e) {
             if (e.target && e.target.classList.contains("enlarge-image")) {

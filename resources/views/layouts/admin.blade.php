@@ -280,14 +280,20 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group">
+                        <a href="{{ route('admin.kekerasan.index') }}"
+                            class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group
+                    {{ request()->routeIs('admin.kekerasan.*') ? 'bg-[#F2F7FF] dark:bg-gray-700' : '' }}
+                            ">
                             <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <span class="ml-3">Data Kekerasan</span>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Data Kekerasan</span>
+                            <span
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                {{ session('totalDataKekerasan', 0) }}
+                            </span>
                         </a>
                     </li>
                     <li>

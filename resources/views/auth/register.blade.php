@@ -2,24 +2,12 @@
     <section class="bg-white">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <section class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
-                <img alt="Night" src="{{ asset('storage/img/login.jpeg') }}" <img alt="Night"
-                    src="{{ asset('storage/img/login.jpeg') }}"
-                    class="absolute inset-0 h-full w-full object-cover opacity-80" />
-                <div class="hidden lg:relative lg:block lg:p-12">
-                    <a class="block text-white" href="/">
-                        <span class="sr-only">Home</span>
-                        <img class="h-20 sm:h-10" src="{{ asset('storage/img/logo.png') }}" alt="Flowbite logo">
-                    </a>
-
-                    <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                        Selamat datang di SDN 167
-                    </h2>
-                </div>
+                <img alt="Night" src="{{ asset('storage/img/login.png') }}"  class="absolute inset-0 h-full w-full object-cover opacity-80" />
             </section>
 
             <main
                 class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-                <div class="max-w-xl lg:max-w-3xl">
+                <div class="max-w-xl lg:max-w-md w-full p-6 rounded-xl shadow">
                     <div class="relative -mt-16 block lg:hidden">
                         <a class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 sm:h-20 sm:w-20"
                             href="/">
@@ -31,16 +19,14 @@
                                     fill="currentColor" />
                             </svg>
                         </a>
-
                         <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                            Welcome to Squid 🦑
+                            Selamat datang di SDN 167 Pekanbaru
                         </h1>
-
-                        <p class="mt-4 leading-relaxed text-gray-500">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                            nam dolorum aliquam, quibusdam aperiam voluptatum.
-                        </p>
                     </div>
+
+                    <h1 class="text-xl font-bold leading-tight tracking-tight hidden lg:block text-gray-600 md:text-2xl dark:text-white">
+                        Silahkan daftar untuk melanjutkan
+                    </h1>
 
                     <form method="POST" action="{{ route('register') }}" class="mt-8 grid grid-cols-6 gap-6">
                         @csrf
@@ -49,8 +35,14 @@
                                 Nama
                             </label>
 
-                            <input type="text" autofocus id="Name" name="name" required
+                            <input type="text"
+                                   value="{{ old('name') }}"
+                                   autofocus id="Name" name="name" required
+                                   placeholder="Otong Surotong"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
                         </div>
 
                         <div class="col-span-6">
@@ -58,8 +50,13 @@
                                 Email
                             </label>
 
-                            <input type="email" id="Email" name="email"
+                            <input type="email"
+                                   value="{{ old('email') }}"
+                                   placeholder="otong@gmail.com"
+                                   id="Email" name="email"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -67,8 +64,12 @@
                                 Password
                             </label>
 
-                            <input type="password" id="Password" name="password"
+                            <input type="password"
+                                   placeholder="***********"
+                                   id="Password" name="password"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -76,19 +77,12 @@
                                 Konfirmasi Password
                             </label>
 
-                            <input type="password" id="password_confirmation" name="password_confirmation"
+                            <input
+                                placeholder="***********"
+                                type="password" id="password_confirmation" name="password_confirmation"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
-                        </div>
 
-                        <div class="col-span-6">
-                            <p class="text-sm text-gray-500">
-                                By creating an account, you agree to our
-                                <a href="#" class="text-gray-700 underline">
-                                    terms and conditions
-                                </a>
-                                and
-                                <a href="#" class="text-gray-700 underline">privacy policy</a>.
-                            </p>
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">

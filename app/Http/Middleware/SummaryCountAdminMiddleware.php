@@ -20,6 +20,7 @@ class SummaryCountAdminMiddleware
         $totalPengumuman = \App\Models\Pengumuman::count();
         $totalKategoriPengaduan = \App\Models\KategoriPengaduan::count();
         $totalDataPengaduan = \App\Models\Pengaduan::count();
+        $totalDataKekerasan = \App\Models\Kekerasan::count();
 
         session()->put('totalUser', $totalUser - 1);
 
@@ -30,6 +31,7 @@ class SummaryCountAdminMiddleware
         session()->put('totalPengumuman', $totalPengumuman);
         session()->put('totalKategoriPengaduan', $totalKategoriPengaduan);
         session()->put('totalDataPengaduan', $totalDataPengaduan);
+        session()->put('totalDataKekerasan', $totalDataKekerasan);
 
         return $response;
     }

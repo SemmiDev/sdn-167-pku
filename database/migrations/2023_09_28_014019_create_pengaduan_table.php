@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama'); // nama orang tua / pengadu
             $table->text('foto');
             $table->text('keterangan')->nullable();
+            $table->enum('status', ['proses', 'belum', 'selesai'])->default('belum');
             $table->timestamps();
         });
     }

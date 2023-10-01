@@ -7,7 +7,7 @@
 
             <main
                 class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-                <div class="max-w-xl lg:max-w-sm w-full p-6 rounded-xl shadow">
+                <div class="max-w-xl lg:max-w-md w-full p-6 rounded-xl shadow">
                     <div class="relative -mt-16 block lg:hidden">
                         <a class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 sm:h-20 sm:w-20"
                             href="/">

@@ -75,11 +75,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/pengaduan/create', [App\Http\Controllers\Admin\PengaduanController::class, 'create'])->name('admin.pengaduan.create');
     Route::post('/pengaduan/store', [App\Http\Controllers\Admin\PengaduanController::class, 'store'])->name('admin.pengaduan.store');
     Route::put('/pengaduan/{pengaduan}/update', [App\Http\Controllers\Admin\PengaduanController::class, 'update'])->name('admin.pengaduan.update');
+    Route::delete('/pengaduan/destroy/{pengaduan}', [App\Http\Controllers\Admin\PengaduanController::class, 'destroy'])->name('admin.pengaduan.destroy');
 
     Route::get('/kekerasan', [App\Http\Controllers\Admin\KekerasanController::class, 'index'])->name('admin.kekerasan.index');
+    Route::get('/kekerasan/{kekerasan}/edit', [App\Http\Controllers\Admin\KekerasanController::class, 'edit'])->name('admin.kekerasan.edit');
     Route::post('/kekerasan/store', [App\Http\Controllers\Admin\KekerasanController::class, 'store'])->name('admin.kekerasan.store');
     Route::put('/kekerasan/update/{kekerasan}', [App\Http\Controllers\Admin\KekerasanController::class, 'update'])->name('admin.kekerasan.update');
     Route::delete('/kekerasan/destroy/{kekerasan}', [App\Http\Controllers\Admin\KekerasanController::class, 'destroy'])->name('admin.kekerasan.destroy');
+
 
     Route::get("ajax-request/daftar-siswa-by-kelas/{kelas}", [\App\Http\Controllers\Admin\AjaxController::class, 'daftarSiswaByKelas'])->name('admin.ajax.daftar-siswa-by-kelas');
     Route::get("ajax-request/daftar-atribut-by-komponen/{komponen}", [\App\Http\Controllers\Admin\AjaxController::class, 'daftarAtributByKomponen'])->name('admin.ajax.daftar-atribut-by-komponen');

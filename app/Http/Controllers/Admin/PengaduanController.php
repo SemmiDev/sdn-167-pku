@@ -58,4 +58,9 @@ class PengaduanController extends Controller
 
         return redirect()->route('admin.pengaduan.index')->with('success', 'Pengaduan berhasil diubah');
     }
+
+    public function destroy(Pengaduan $pengaduan) {
+        $pengaduan->delete();
+        return redirect()->route('admin.pengaduan.index')->with('success', 'Pengaduan berhasil dihapus');
+    }
 }

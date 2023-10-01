@@ -20,10 +20,6 @@ class KomponenSeeder extends Seeder
                 'keterangan' => "Anti Kekerasan",
             ],
             [
-                'nama' => 'Sosial',
-                'keterangan' => "Sosial",
-            ],
-            [
                 'nama' => 'Religius',
                 'keterangan' => "Religius",
             ],
@@ -47,12 +43,12 @@ class KomponenSeeder extends Seeder
             ],
             [
                 'nama' => 'Sholat Berjamaah',
-                'id_komponen' => $komponen[2]->id,
+                'id_komponen' => $komponen[1]->id,
                 'keterangan' => "Sholat Berjamaah",
             ],
             [
                 'nama' => 'Perayaan Hari Besar',
-                'id_komponen' => $komponen[2]->id,
+                'id_komponen' => $komponen[1]->id,
                 'keterangan' => "Perayaan Hari Besar",
             ],
         ];

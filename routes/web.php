@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/dashboard/pengumuman-statistics', [App\Http\Controllers\Admin\DashboardController::class, 'pengumumanStatistic'])->name('admin.dashboard.pengumuman-statistics');
 
     Route::get('/guru', [App\Http\Controllers\Admin\GuruController::class, 'index'])->name('admin.guru.index');
     Route::post('/guru/store', [App\Http\Controllers\Admin\GuruController::class, 'store'])->name('admin.guru.store');

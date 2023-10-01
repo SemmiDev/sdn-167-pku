@@ -67,15 +67,37 @@
         </a>
     </div>
 
-    <div class="container">
-        <canvas
-            id="myChart"
-            width="400" height="150"
-        ></canvas>
-    </div>
+    <form action="{{ route('admin.dashboard') }}"
+          id="form-filter"
+          method="GET">
+        <div class="flex gap-5 mt-5 justify-end">
+            <div class="flex flex-col gap-2">
+                <select name="year" id="year" class="w-36 rounded-md border border-gray-300 p-2">
+                    @php
+                        $years = range(2001, date('Y'));
+                        $years = array_reverse($years);
+                        $selectedYear = request()->get('year', date('Y'));
+                    @endphp
+                    @foreach($years as $year)
+                        <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <canvas
+        id="myChart"
+        width="400" height="150"
+    ></canvas>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+            document.getElementById('year').addEventListener('change', function () {
+                document.getElementById('form-filter').submit();
+            });
+
             // Ambil data JSON dari Blade template
             var dataPengumuman = JSON.parse(@json($statisticPengumuman));
             var dataKekerasan = JSON.parse(@json($statisticKekerasan));

@@ -46,7 +46,12 @@
                     </td>
                     <th scope="row"
                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                        <img src="{{ asset('storage/pengaduan/' . $pengaduan->foto) }}" alt="foto" class="w-48 h-48 object-cover rounded-xl enlarge-image" data-src="{{ asset('storage/pengaduan/' . $pengaduan->foto) }}">
+                        @if(str_contains($pengaduan->foto, 'http'))
+                            <img src="{{ $pengaduan->foto }}" alt="foto" class="w-48 h-48 object-cover rounded-xl enlarge-image" data-src="{{ asset('storage/pengaduan/' . $pengaduan->foto) }}">
+                        @else
+                            <img src="{{ asset('storage/pengaduan/' . $pengaduan->foto) }}" alt="foto" class="w-48 h-48 object-cover rounded-xl enlarge-image" data-src="{{ asset('storage/pengaduan/' . $pengaduan->foto) }}">
+                        @endif
+
                     </th>
                     <td class="px-6 py-4 text-center">
                         {{ $pengaduan->nama }}
@@ -63,21 +68,6 @@
                     <td class="px-6 py-4 text-center">
                         {{ $pengaduan->created_at->format('d M Y') }}
                     </td>
-{{--                    <td class="px-6 py-4 text-center">--}}
-{{--                        @php--}}
-{{--                        $status = 'Belum Diproses';--}}
-{{--                        if ($pengaduan->status == "proses") {--}}
-{{--                            $status = 'Sedang Diproses';--}}
-{{--                        } elseif ($pengaduan->status == "selesai") {--}}
-{{--                            $status = 'Selesai';--}}
-{{--                        }--}}
-{{--                        @endphp--}}
-
-{{--                        <span--}}
-{{--                            class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">--}}
-{{--                            {{ $status }}--}}
-{{--                        </span>--}}
-{{--                    </td>--}}
                     <td class="px-6 py-4 text-center">
                         <div class="flex gap-2 justify-center items-center">
 

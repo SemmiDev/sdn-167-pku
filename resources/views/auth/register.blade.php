@@ -1,8 +1,9 @@
-<x-guest-layout>
+<x-auth-layout>
     <section class="bg-white">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <section class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
-                <img alt="Night" src="{{ asset('storage/img/login.png') }}"  class="absolute inset-0 h-full w-full object-cover opacity-80" />
+                <img alt="Night" src="{{ asset('storage/img/login.png') }}"
+                    class="absolute inset-0 h-full w-full object-cover opacity-80" />
             </section>
 
             <main
@@ -24,7 +25,8 @@
                         </h1>
                     </div>
 
-                    <h1 class="text-xl font-bold leading-tight tracking-tight hidden lg:block text-gray-600 md:text-2xl dark:text-white">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight hidden lg:block text-gray-600 md:text-2xl dark:text-white">
                         Silahkan daftar untuk melanjutkan
                     </h1>
 
@@ -35,10 +37,8 @@
                                 Nama
                             </label>
 
-                            <input type="text"
-                                   value="{{ old('name') }}"
-                                   autofocus id="Name" name="name" required
-                                   placeholder="Otong Surotong"
+                            <input type="text" value="{{ old('name') }}" autofocus id="Name" name="name"
+                                required placeholder="Otong Surotong"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
 
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -50,10 +50,8 @@
                                 Email
                             </label>
 
-                            <input type="email"
-                                   value="{{ old('email') }}"
-                                   placeholder="otong@gmail.com"
-                                   id="Email" name="email"
+                            <input type="email" value="{{ old('email') }}" placeholder="otong@gmail.com"
+                                id="Email" name="email"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
 
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -64,9 +62,7 @@
                                 Password
                             </label>
 
-                            <input type="password"
-                                   placeholder="***********"
-                                   id="Password" name="password"
+                            <input type="password" placeholder="***********" id="Password" name="password"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
 
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -77,9 +73,8 @@
                                 Konfirmasi Password
                             </label>
 
-                            <input
-                                placeholder="***********"
-                                type="password" id="password_confirmation" name="password_confirmation"
+                            <input placeholder="***********" type="password" id="password_confirmation"
+                                name="password_confirmation"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
 
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -104,4 +99,4 @@
         </div>
     </section>
 
-</x-guest-layout>
+    </x-guest-layout>

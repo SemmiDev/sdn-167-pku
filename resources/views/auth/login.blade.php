@@ -1,8 +1,9 @@
-<x-guest-layout>
+<x-auth-layout>
     <section class="bg-white">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <section class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
-                <img alt="Night" src="{{ asset('storage/img/login.png') }}"  class="absolute inset-0 h-full w-full object-cover opacity-80" />
+                <img alt="Night" src="{{ asset('storage/img/login.png') }}"
+                    class="absolute inset-0 h-full w-full object-cover opacity-80" />
             </section>
 
             <main
@@ -29,7 +30,8 @@
                         </p>
                     </div>
 
-                    <h1 class="text-xl font-bold leading-tight tracking-tight hidden lg:block text-gray-600 md:text-2xl dark:text-white">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight hidden lg:block text-gray-600 md:text-2xl dark:text-white">
                         Silahkan masuk untuk melanjutkan
                     </h1>
 
@@ -71,4 +73,4 @@
         </div>
     </section>
 
-</x-guest-layout>
+    </x-guest-layout>

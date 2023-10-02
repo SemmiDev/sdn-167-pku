@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-admin-layout>
     <div class="flex gap-5 flex-wrap">
         <a href="#" class="bg-white text-black p-5 rounded-xl w-64 gap-4 flex">
             <img src="{{ asset('storage/img/wisuda.png') }}" alt="attendance"
@@ -147,4 +147,4 @@
             });
         });
     </script>
-</x-guest-layout>
+</x-admin-layout>

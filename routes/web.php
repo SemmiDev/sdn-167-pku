@@ -9,6 +9,7 @@ Route::get('/pengaduan-index', [WelcomeController::class, 'pengaduanIndex'])->na
 Route::get('/pengaduan-create', [WelcomeController::class, 'pengaduanCreate'])->name('guest.pengaduan.create');
 Route::post('/pengaduan-store', [WelcomeController::class, 'pengaduanStore'])->name('guest.pengaduan.store');
 Route::get('/pengumuman-index', [WelcomeController::class, 'pengumumanIndex'])->name('guest.pengumuman.index');
+Route::get('/kekerasan-index', [WelcomeController::class, 'kekerasanIndex'])->name('guest.kekerasan.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

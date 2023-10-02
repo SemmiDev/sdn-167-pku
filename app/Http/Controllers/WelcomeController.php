@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\KategoriPengaduan;
 use App\Models\Kekerasan;
+use App\Models\Komponen;
 use App\Models\Pengaduan;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
@@ -99,5 +101,19 @@ class WelcomeController extends Controller
     {
         $daftarPengumuman = Pengumuman::latest()->get();
         return view('guest.pengumuman.index', compact('daftarPengumuman'));
+    }
+
+    public function kekerasanIndex()
+    {
+        $daftarKekerasan = DB::table('kekerasan')
+            ->join('siswa', 'kekerasan.id_siswa', '=', 'siswa.id')
+            ->join('komponen', 'kekerasan.id_komponen', '=', 'komponen.id')
+            ->join('atribut', 'kekerasan.id_atribut', '=', 'atribut.id')
+            ->select('kekerasan.*', 'siswa.nama as nama_siswa', 'siswa.kelas as kelas', 'komponen.nama as nama_komponen', 'atribut.nama as nama_atribut')
+            ->orderBy('kekerasan.created_at', 'desc')
+            ->get();
+
+        $daftarKomponen = Komponen::all();
+        return view('guest.kekerasan.index', compact('daftarKekerasan', 'daftarKomponen'));
     }
 }

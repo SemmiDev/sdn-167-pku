@@ -8,6 +8,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/pengaduan-index', [WelcomeController::class, 'pengaduanIndex'])->name('guest.pengaduan.index');
 Route::get('/pengaduan-create', [WelcomeController::class, 'pengaduanCreate'])->name('guest.pengaduan.create');
 Route::post('/pengaduan-store', [WelcomeController::class, 'pengaduanStore'])->name('guest.pengaduan.store');
+Route::get('/pengumuman-index', [WelcomeController::class, 'pengumumanIndex'])->name('guest.pengumuman.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

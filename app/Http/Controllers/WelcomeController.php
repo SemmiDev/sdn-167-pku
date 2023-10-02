@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KategoriPengaduan;
 use App\Models\Kekerasan;
 use App\Models\Pengaduan;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -92,5 +93,11 @@ class WelcomeController extends Controller
         ]);
 
         return redirect()->route('guest.pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan');
+    }
+
+    public function pengumumanIndex()
+    {
+        $daftarPengumuman = Pengumuman::latest()->get();
+        return view('guest.pengumuman.index', compact('daftarPengumuman'));
     }
 }

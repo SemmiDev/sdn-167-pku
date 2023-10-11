@@ -1,0 +1,155 @@
+@startuml
+
+class Guru {
+    id: bigint unsigned
+    nama: varchar(255)
+    email: varchar(255)
+    jenis_kelamin: varchar(255)
+    alamat: varchar(255)
+    no_telepon: varchar(255)
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class KategoriPengaduan {
+    id: bigint unsigned
+    kategori: varchar(255)
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Komponen {
+    id: bigint unsigned
+    nama: varchar(255)
+    keterangan: text
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Atribut {
+    id: bigint unsigned
+    nama: varchar(255)
+    id_komponen: bigint unsigned
+    keterangan: text
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Pengaduan {
+    id: bigint unsigned
+    id_kategori: bigint unsigned
+    nama: varchar(255)
+    foto: text
+    keterangan: text
+    status: enum('proses', 'belum', 'selesai')
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Pengumuman {
+    id: bigint unsigned
+    judul: varchar(255)
+    keterangan: text
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Siswa {
+    id: bigint unsigned
+    nama: varchar(255)
+    kelas: tinyint
+    jenis_kelamin: varchar(255)
+    alamat: varchar(255)
+    nama_ortu: varchar(255)
+    no_telepon_ortu: varchar(255)
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Absensi {
+    id: bigint unsigned
+    id_siswa: bigint unsigned
+    id_komponen: bigint unsigned
+    id_atribut: bigint unsigned
+    keterangan: longtext
+    status: varchar(255)
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Kekerasan {
+    id: bigint unsigned
+    id_siswa: bigint unsigned
+    id_komponen: bigint unsigned
+    id_atribut: bigint unsigned
+    keterangan: longtext
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class User {
+    id: bigint unsigned
+    name: varchar(255)
+    email: varchar(255)
+    password: varchar(255)
+    remember_token: varchar(100)
+    created_at: timestamp
+    updated_at: timestamp
+}
+
+class Migrations {
+  +id: int
+  +migration: varchar
+  +batch: int
+}
+
+class Permissions {
+  +id: bigint
+  +name: varchar
+  +guard_name: varchar
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+class ModelHasPermissions {
+  +permission_id: bigint
+  +model_type: varchar
+  +model_id: bigint
+}
+
+class ModelHasRoles {
+  +role_id: bigint
+  +model_type: varchar
+  +model_id: bigint
+}
+
+class RoleHasPermissions {
+  +permission_id: bigint
+  +role_id: bigint
+}
+
+class Roles {
+  +id: bigint
+  +name: varchar
+  +guard_name: varchar
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+KategoriPengaduan -- Pengaduan : 1 -- *
+Komponen -- Atribut : 1 -- *
+
+Siswa -- Kekerasan : 1 -- *
+Komponen -- Kekerasan : 1 -- *
+Atribut -- Kekerasan : 1 -- *
+
+Siswa -- Absensi : 1 -- *
+Komponen -- Absensi : 1 -- *
+Atribut -- Absensi : 1 -- *
+
+Roles -- ModelHasRoles : 1 -- *
+Roles -- RoleHasPermissions : 1 -- *
+Permissions -- RoleHasPermissions : 1 -- *
+Permissions -- ModelHasPermissions : 1 -- *
+
+@enduml

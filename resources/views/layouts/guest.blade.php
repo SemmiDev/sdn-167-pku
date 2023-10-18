@@ -160,18 +160,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group">
-                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m7 13 6-6m-5-.5h.01m2.98 7H11m1.007-11.313a2.75 2.75 0 0 0 2.1.87 2.745 2.745 0 0 1 2.837 2.837 2.749 2.749 0 0 0 .87 2.1 2.747 2.747 0 0 1 0 4.014 2.748 2.748 0 0 0-.87 2.1 2.746 2.746 0 0 1-2.837 2.837 2.75 2.75 0 0 0-2.1.87 2.748 2.748 0 0 1-4.014 0 2.75 2.75 0 0 0-2.1-.87 2.744 2.744 0 0 1-2.837-2.837 2.749 2.749 0 0 0-.87-2.1 2.747 2.747 0 0 1 0-4.014 2.75 2.75 0 0 0 .87-2.1 2.745 2.745 0 0 1 2.838-2.837 2.749 2.749 0 0 0 2.1-.87 2.748 2.748 0 0 1 4.013 0Z" />
-                            </svg>
-                            <span class="ml-3">Data Pelanggaran</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('guest.pengaduan.index') }}"
                             class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group
                     {{ request()->routeIs('app.pengaduan.*') ? 'bg-[#F2F7FF] dark:bg-gray-700' : '' }}">

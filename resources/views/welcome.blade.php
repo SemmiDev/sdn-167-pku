@@ -21,18 +21,7 @@
                 </span>
             </div>
         </a>
-
-        <a href="#" class="bg-white text-black p-5 rounded-xl w-64 gap-4 flex">
-            <img src="{{ asset('storage/img/pelanggaran.png') }}" alt="attendance"
-                class="w-20 rounded-md shrink-0 object-cover">
-            <div class="flex gal-3 flex-col">
-                <span class="text-xl text-[#8894A0] break-all">Data Pelanggaran</span>
-                <span class="text-black font-semibold">
-                    {{ session('totalDataPelanggaran', 0) }} Kasus
-                </span>
-            </div>
-        </a>
-
+        
         <a href="{{ route('app.kekerasan.index') }}" class="bg-white text-black p-5 rounded-xl w-64 gap-4 flex">
             <img src="{{ asset('storage/img/kekerasan.png') }}" alt="attendance"
                 class="w-20 rounded-md shrink-0 object-cover">

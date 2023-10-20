@@ -9,7 +9,7 @@ class AjaxController
 {
     public function daftarSiswaByKelas($kelas)
     {
-        $siswa = Siswa::where('kelas', $kelas)->get();
+        $siswa = Siswa::where('kelas', $kelas)->orderBy('nama', 'asc')->get();
         return response()->json([
             'success' => true,
             'data' => $siswa,

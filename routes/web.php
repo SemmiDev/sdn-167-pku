@@ -80,6 +80,13 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
 
     Route::get("ajax-request/daftar-siswa-by-kelas/{kelas}", [\App\Http\Controllers\App\AjaxController::class, 'daftarSiswaByKelas'])->name('app.ajax.daftar-siswa-by-kelas');
     Route::get("ajax-request/daftar-atribut-by-komponen/{komponen}", [\App\Http\Controllers\App\AjaxController::class, 'daftarAtributByKomponen'])->name('app.ajax.daftar-atribut-by-komponen');
+
+
+    // data absensi
+    Route::get("/absensi", [\App\Http\Controllers\App\AbsensiController::class, 'index'])->name('app.absensi.index');
+    Route::get("/absensi/create", [\App\Http\Controllers\App\AbsensiController::class, 'create'])->name('app.absensi.create');
+    Route::post("/absensi/store", [\App\Http\Controllers\App\AbsensiController::class, 'store'])->name('app.absensi.store');
+    Route::put("/absensi/update", [\App\Http\Controllers\App\AbsensiController::class, 'update'])->name('app.absensi.update');
 })->middleware([\App\Http\Middleware\SummaryCountAppMiddleware::class]);
 
 require __DIR__ . '/auth.php';

@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/absensi-index', [WelcomeController::class, 'absensiIndex'])->name('guest.absensi.index');
 Route::get('/pengaduan-index', [WelcomeController::class, 'pengaduanIndex'])->name('guest.pengaduan.index');
 Route::get('/pengaduan-create', [WelcomeController::class, 'pengaduanCreate'])->name('guest.pengaduan.create');
 Route::post('/pengaduan-store', [WelcomeController::class, 'pengaduanStore'])->name('guest.pengaduan.store');
@@ -78,15 +79,16 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
     Route::put('/kekerasan/update/{kekerasan}', [App\Http\Controllers\App\KekerasanController::class, 'update'])->name('app.kekerasan.update')->middleware(['role:OPERATOR_SEKOLAH|GURU_BK']);
     Route::delete('/kekerasan/destroy/{kekerasan}', [App\Http\Controllers\App\KekerasanController::class, 'destroy'])->name('app.kekerasan.destroy')->middleware(['role:OPERATOR_SEKOLAH|GURU_BK']);
 
-    Route::get("ajax-request/daftar-siswa-by-kelas/{kelas}", [\App\Http\Controllers\App\AjaxController::class, 'daftarSiswaByKelas'])->name('app.ajax.daftar-siswa-by-kelas');
-    Route::get("ajax-request/daftar-atribut-by-komponen/{komponen}", [\App\Http\Controllers\App\AjaxController::class, 'daftarAtributByKomponen'])->name('app.ajax.daftar-atribut-by-komponen');
-
-
     // data absensi
     Route::get("/absensi", [\App\Http\Controllers\App\AbsensiController::class, 'index'])->name('app.absensi.index');
     Route::get("/absensi/create", [\App\Http\Controllers\App\AbsensiController::class, 'create'])->name('app.absensi.create');
     Route::post("/absensi/store", [\App\Http\Controllers\App\AbsensiController::class, 'store'])->name('app.absensi.store');
     Route::put("/absensi/update", [\App\Http\Controllers\App\AbsensiController::class, 'update'])->name('app.absensi.update');
 })->middleware([\App\Http\Middleware\SummaryCountAppMiddleware::class]);
+
+
+Route::get("ajax-request/daftar-siswa-by-kelas/{kelas}", [\App\Http\Controllers\App\AjaxController::class, 'daftarSiswaByKelas'])->name('app.ajax.daftar-siswa-by-kelas');
+Route::get("ajax-request/daftar-atribut-by-komponen/{komponen}", [\App\Http\Controllers\App\AjaxController::class, 'daftarAtributByKomponen'])->name('app.ajax.daftar-atribut-by-komponen');
+
 
 require __DIR__ . '/auth.php';

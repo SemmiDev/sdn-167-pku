@@ -116,4 +116,33 @@ class WelcomeController extends Controller
         $daftarKomponen = Komponen::all();
         return view('guest.kekerasan.index', compact('daftarKekerasan', 'daftarKomponen'));
     }
+
+    public function absensiIndex(Request $request)
+    {
+        $kelas = $request->kelas ?? 1;
+        $id_komponen = $request->id_komponen;
+        $id_atribut = $request->id_atribut;
+        $tanggal = $request->tanggal ?? date('Y-m-d');
+
+        $daftarAbsensi = DB::table('absensi')
+            ->whereDate('absensi.tanggal', $tanggal)
+            ->join('komponen', 'absensi.id_komponen', '=', 'komponen.id')
+            ->join('atribut', 'absensi.id_atribut', '=', 'atribut.id')
+            ->join('siswa', 'absensi.id_siswa', '=', 'siswa.id')
+            ->when($id_komponen, function ($query, $id_komponen) {
+                return $query->where('absensi.id_komponen', $id_komponen);
+            })
+            ->when($id_atribut, function ($query, $id_atribut) {
+                return $query->where('absensi.id_atribut', $id_atribut);
+            })
+            ->when($kelas, function ($query, $kelas) {
+                return $query->where('siswa.kelas', $kelas);
+            })
+            ->select('absensi.*', 'komponen.nama as komponen', 'siswa.nama as siswa', 'atribut.nama as atribut')
+            ->get();
+
+        $daftarKomponen = \App\Models\Base\Komponen::latest()->get();
+
+        return view('guest.absensi.index', compact('daftarAbsensi', 'daftarKomponen'));
+    }
 }

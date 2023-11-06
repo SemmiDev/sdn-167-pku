@@ -1,38 +1,20 @@
 <x-admin-layout>
     <div class="flex gap-5 flex-wrap">
-{{--        <a href="#" class="bg-white text-black p-5 rounded-xl max-w-xl gap-4 flex">--}}
-{{--            <img src="{{ asset('storage/img/wisuda.png') }}" alt="attendance"--}}
-{{--                class="w-20 rounded-md shrink-0 object-cover">--}}
-{{--            <div class="flex gal-3 flex-col">--}}
-{{--                <span class="text-xl text-[#8894A0] break-all">Data Kehadiran</span>--}}
-{{--                <span class="text-black font-semibold">--}}
-{{--                    {{ session('totalDataKehadiran', 0) }} Kasus--}}
-{{--                </span>--}}
-{{--            </div>--}}
-{{--        </a>--}}
 
-{{--        <a href="#" class="bg-white text-black p-5 rounded-xl max-w-xl gap-4 flex">--}}
-{{--            <img src="{{ asset('storage/img/wisuda-merah.png') }}" alt="attendance"--}}
-{{--                class="w-20 rounded-md shrink-0 object-cover">--}}
-{{--            <div class="flex gal-3 flex-col">--}}
-{{--                <span class="text-xl text-[#8894A0] break-all">Data Ketidakhadiran</span>--}}
-{{--                <span class="text-black font-semibold">--}}
-{{--                    {{ session('totalDataKetidakhadiran', 0) }} Kasus--}}
-{{--                </span>--}}
-{{--            </div>--}}
-{{--        </a>--}}
+        @hasanyrole('GURU_BK')
+            <a href="{{ route('app.kekerasan.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
+                <img src="{{ asset('storage/img/kekerasan.png') }}" alt="attendance"
+                    class="w-20 rounded-md shrink-0 object-cover">
+                <div class="flex gal-3 flex-col">
+                    <span class="text-xl text-[#8894A0] break-all">Data Kekerasan</span>
+                    <span class="text-black font-semibold">
+                        {{ session('totalDataKekerasan') }} Kasus
+                    </span>
+                </div>
+            </a>
+        @endhasanyrole
 
-        <a href="{{ route('app.kekerasan.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
-            <img src="{{ asset('storage/img/kekerasan.png') }}" alt="attendance"
-                class="w-20 rounded-md shrink-0 object-cover">
-            <div class="flex gal-3 flex-col">
-                <span class="text-xl text-[#8894A0] break-all">Data Kekerasan</span>
-                <span class="text-black font-semibold">
-                    {{ session('totalDataKekerasan') }} Kasus
-                </span>
-            </div>
-        </a>
-
+        @hasanyrole('GURU_BK')
         <a href="{{ route('app.pengaduan.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
             <img src="{{ asset('storage/img/pengaduan.png') }}" alt="attendance"
                 class="w-20 rounded-md shrink-0 object-cover">
@@ -43,7 +25,9 @@
                 </span>
             </div>
         </a>
+        @endhasanyrole
 
+        @hasanyrole('ADMIN')
         <a href="{{ route('app.pengumuman.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
             <img src="{{ asset('storage/img/pengumuman.png') }}" alt="attendance"
                 class="w-20 rounded-md shrink-0 object-cover">
@@ -54,6 +38,7 @@
                 </span>
             </div>
         </a>
+        @endhasanyrole
     </div>
 
     <form action="{{ route('app.dashboard') }}" id="form-filter" method="GET">

@@ -23,7 +23,7 @@ class GuruController extends Controller
                 'email' => 'required|email|unique:users,email',
                 'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                 'alamat' => 'required',
-                'no_telepon' => 'required|starts_with:08',
+                'no_telepon' => 'required',
             ], [
                 'nama.required' => 'Nama harus diisi',
                 'email.required' => 'Email harus diisi',
@@ -66,7 +66,7 @@ class GuruController extends Controller
                 'email' => 'required|email|unique:users,email,' . $guru->id,
                 'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                 'alamat' => 'required',
-                'no_telepon' => 'required|starts_with:08',
+                'no_telepon' => 'required',
             ], [
                 'nama.required' => 'Nama harus diisi',
                 'email.required' => 'Email harus diisi',

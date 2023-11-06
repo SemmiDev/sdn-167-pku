@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('id_siswa')->constrained('siswa')->onDelete('cascade');
             $table->foreignId('id_komponen')->constrained('komponen')->onDelete('cascade');
             $table->foreignId('id_atribut')->constrained('atribut')->onDelete('cascade');
+            $table->string('kegiatan')->nullable(true)->default('null');
+            $table->date('tanggal');
             $table->longText('keterangan')->nullable();
             $table->string('status');
             $table->timestamps();

@@ -19,7 +19,7 @@ class AbsensiController extends Controller
         $tanggal = $request->tanggal ?? date('Y-m-d');
 
         $daftarAbsensi = DB::table('absensi')
-            ->whereDate('absensi.created_at', $tanggal)
+            ->whereDate('absensi.tanggal', $tanggal)
             ->join('komponen', 'absensi.id_komponen', '=', 'komponen.id')
             ->join('atribut', 'absensi.id_atribut', '=', 'atribut.id')
             ->join('siswa', 'absensi.id_siswa', '=', 'siswa.id')
@@ -52,6 +52,8 @@ class AbsensiController extends Controller
 
             $id_komponen = $request->id_komponen;
             $id_atribut = $request->id_atribut;
+            $kegiatan = $request->kegiatan;
+            $tanggal = $request->tanggal;
 
             $siswa = $request->siswa;
             $status = $request->status;
@@ -62,8 +64,10 @@ class AbsensiController extends Controller
                     'id_siswa' => $v,
                     'id_komponen' => $id_komponen,
                     'id_atribut' => $id_atribut,
+                    'kegiatan' => $kegiatan,
                     'status' => $status[$k],
                     'keterangan' => $keterangan[$k],
+                    'tanggal' => date('Y-m-d', strtotime($tanggal))
                 ]);
             }
 

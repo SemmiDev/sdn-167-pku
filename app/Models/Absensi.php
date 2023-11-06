@@ -10,6 +10,8 @@ class Absensi extends BaseAbsensi
 		'id_siswa',
 		'id_komponen',
 		'id_atribut',
+		'kegiatan',
+		'tanggal',
 		'keterangan',
 		'status'
 	];

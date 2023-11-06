@@ -1,16 +1,4 @@
-## TODO
-
-### admin
-
--   mengelola data kehadiran
--   mengelola data ketidakhadiran
--   mengelola data pelanggaran
-
-### manage roles (can)
-
-## Cara Instalasi
-
-### Pastikan udah menginstall
+## Software requirement
 
 1. [XAMPP](https://www.apachefriends.org/download.html)
 2. [Git](https://git-scm.com/downloads)
@@ -20,9 +8,12 @@
 6. [NPM](https://www.npmjs.com/get-npm)
 7. [VSCode](https://code.visualstudio.com/download)
 
+## Installation guide
+
 ```bash
   git clone -v https://github.com/SemmiDev/sdn-167-pku.git sdn-167-pku
-  cd sdn-167-pku
+  or
+  Download zip file
 ```
 
 ```bash

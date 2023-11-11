@@ -13,6 +13,7 @@ class Absensi extends BaseAbsensi
 		'kegiatan',
 		'tanggal',
 		'keterangan',
-		'status'
+		'status',
+		'id_guru_pembimbing'
 	];
 }

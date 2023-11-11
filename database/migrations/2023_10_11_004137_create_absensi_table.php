@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('id_atribut')->constrained('atribut')->onDelete('cascade');
             $table->string('kegiatan')->nullable(true)->default('null');
             $table->date('tanggal');
+            $table->foreignId('id_guru_pembimbing')->constrained('guru')->onDelete('cascade')->nullable(true);
             $table->longText('keterangan')->nullable();
             $table->string('status');
             $table->timestamps();

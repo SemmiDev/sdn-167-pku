@@ -11,17 +11,6 @@
             </div>
         </a>
 
-        <a href="{{ route('guest.pengaduan.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
-            <img src="{{ asset('storage/img/pengaduan.png') }}" alt="attendance"
-                class="w-20 rounded-md shrink-0 object-cover">
-            <div class="flex gal-3 flex-col">
-                <span class="text-xl text-[#8894A0] break-all">Data Pengaduan</span>
-                <span class="text-black font-semibold">
-                    {{ session('totalDataPengaduan', 0) }} Kasus
-                </span>
-            </div>
-        </a>
-
         <a href="{{ route('guest.pengumuman.index') }}" class="bg-white text-black p-5 rounded-xl max-w-xl hover:bg-gray-50 gap-4 flex">
             <img src="{{ asset('storage/img/pengumuman.png') }}" alt="attendance"
                 class="w-20 rounded-md shrink-0 object-cover">

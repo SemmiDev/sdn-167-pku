@@ -135,7 +135,24 @@
            class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
            aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-gray-200 dark:border-gray-700">
+                <li>
+                    <a href="{{ route('welcome') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#F2F7FF] dark:hover:bg-gray-700 group
+                {{ request()->routeIs('welcome') ? 'bg-[#F2F7FF] dark:bg-gray-700' : '' }}
+                        ">
+                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                            <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2">
+                                <path d="M9 4.025A7.5 7.5 0 1 0 16.975 12H9V4.025Z" />
+                                <path
+                                    d="M12.5 1c-.169 0-.334.014-.5.025V9h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 12.5 1Z" />
+                            </g>
+                        </svg>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{route('guest.absensi.index')}}"
                        class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group

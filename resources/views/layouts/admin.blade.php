@@ -19,6 +19,8 @@
         integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -181,7 +183,7 @@
                                         stroke-width="2"
                                         d="M9 5h6M9 8h6m-6 3h6M4.996 5h.01m-.01 3h.01m-.01 3h.01M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z" />
                                 </svg>
-                                <span class="flex-1 ml-3 whitespace-nowrap">Komponen</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Komponen Kegiatan</span>
                                 <span
                                     class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
                                     {{ session('totalKomponen', 0) }}
@@ -198,7 +200,7 @@
                                         stroke-width="2"
                                         d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1m6 0v3H6V2M5 5h8m-8 5h8m-8 4h8" />
                                 </svg>
-                                <span class="flex-1 ml-3 whitespace-nowrap">Atribut</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Jenis kegiatan</span>
                                 <span
                                     class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
                                     {{ session('totalAtribut', 0) }}
@@ -280,7 +282,7 @@
                         </li>
                     @endhasanyrole
 
-                    @hasanyrole('GURU_BK')
+                    @hasanyrole('GURU_BK|OPERATOR_SEKOLAH')
                     <li>
                         <a href="{{ route('app.pengaduan.index') }}"
                             class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-[#F2F7FF] dark:hover:bg-gray-700 dark:text-white group

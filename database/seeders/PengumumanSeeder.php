@@ -13,12 +13,12 @@ class PengumumanSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             DB::table('pengumuman')->insert([
                 'judul' => 'Pengumuman ' . $i,
                 'keterangan' => 'Keterangan Pengumuman ' . $i,
-                'created_at' => date('Y-m-d H:i:s', mt_rand(1672531200, 1704067200)),
-                'updated_at' => date('Y-m-d H:i:s', mt_rand(1672531200, 1704067200)),
+                'created_at' => date('Y-m-d H:i:s', mt_rand(1577836800, 1609459199)),
+                'updated_at' => date('Y-m-d H:i:s', mt_rand(1577836800, 1609459199)),
             ]);
         }
     }

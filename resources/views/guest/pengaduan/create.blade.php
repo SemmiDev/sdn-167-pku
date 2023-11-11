@@ -3,12 +3,13 @@
         class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800 p-5">
         @csrf
 
-        <h1 class="text-3xl text-black pb-6">Form Pengaduan</h1>
+        <h1 class="text-3xl text-black">Form Pengaduan</h1>
+        <p class="text-md text-blue-500 pb-6">Hanya untuk kegiatan di lingkungan sekolah</p>
 
         <div class="mb-6">
             <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                Pengadu</label>
-            <input type="text" name="nama" placeholder="Ucup" id="nama"
+                Pelapor</label>
+            <input type="text" name="nama" placeholder="Ucup Sirucup" id="nama"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
         </div>
@@ -18,7 +19,7 @@
             <select name="id_kategori" id="kategori"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white {{ $errors->has('id_kategori') ? 'border-red-500' : '' }}"
                 required>
-                <option value="" disabled selected>Pilih Kategori</option>
+                <option value="" disabled selected>Pilih Kategori / Jenis Pengaduan</option>
                 @foreach ($daftarKategoriPengaduan as $kategori)
                     <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
                 @endforeach
@@ -27,7 +28,7 @@
 
         <div class="mb-6">
             <label for="text"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan dan Kronologis Kejadian</label>
             <textarea name="keterangan" cols="30" rows="5" id="keterangan"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                                 {{ $errors->has('keterangan') ? 'border-red-500' : '' }}"

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Guru extends BaseGuru
 {
     use  HasFactory;
+    protected $locale = 'id';
+
 	protected $fillable = [
 		'nama',
 		'jenis_kelamin',

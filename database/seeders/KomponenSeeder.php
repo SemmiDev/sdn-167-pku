@@ -32,24 +32,44 @@ class KomponenSeeder extends Seeder
 
         $atribut = [
             [
-                'nama' => 'Verbal',
+                'nama' => 'Kekerasan Verbal',
                 'id_komponen' => $komponen[0]->id,
-                'keterangan' => "Verbal",
+                'keterangan' => "Kekerasan Verbal",
             ],
             [
-                'nama' => 'Non Verbal',
+                'nama' => 'Kekerasan Fisik',
                 'id_komponen' => $komponen[0]->id,
-                'keterangan' => "Non Verbal",
+                'keterangan' => "Kekerasan Fisik",
             ],
             [
-                'nama' => 'Sholat Berjamaah',
+                'nama' => 'Kekerasan Sosial',
+                'id_komponen' => $komponen[0]->id,
+                'keterangan' => "Kekerasan Sosial",
+            ],
+            [
+                'nama' => 'Kekerasan Seksual',
+                'id_komponen' => $komponen[0]->id,
+                'keterangan' => "Kekerasan Seksual",
+            ],
+            [
+                'nama' => 'Kekerasan Lainnya',
+                'id_komponen' => $komponen[0]->id,
+                'keterangan' => "Kekerasan Lainnya",
+            ],
+            [
+                'nama' => 'Ibadah Harian',
                 'id_komponen' => $komponen[1]->id,
-                'keterangan' => "Sholat Berjamaah",
+                'keterangan' => "Ibadah Harian",
             ],
             [
                 'nama' => 'Perayaan Hari Besar',
                 'id_komponen' => $komponen[1]->id,
                 'keterangan' => "Perayaan Hari Besar",
+            ],
+            [
+                'nama' => 'Lainnya',
+                'id_komponen' => $komponen[1]->id,
+                'keterangan' => "Lainnya",
             ],
         ];
 

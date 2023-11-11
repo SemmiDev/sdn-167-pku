@@ -15,64 +15,56 @@
             @csrf
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal:</label>
-                    <input type="date" name="tanggal" id="tanggal"
-                    value="{{ request()->get('tanggal') }}"
+                    <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal Pelaksanaan</label>
+                    <input type="date" name="tanggal" id="tanggal" value="{{ request()->get('tanggal') }}"
                         class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500">
                 </div>
                 <div>
-                    <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas:</label>
+                    <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
                     <select name="kelas" id="kelas"
                         class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500">
                         <option value="">Pilih Kelas</option>
-                        <option value="1"
-                            {{ request()->get('kelas') == 1 ? 'selected' : '' }}>
-                        1
+                        <option value="1" {{ request()->get('kelas') == 1 ? 'selected' : '' }}>
+                            1
                         </option>
-                        <option value="2"
-                            {{ request()->get('kelas') == 2 ? 'selected' : '' }}>
-                        2</option>
-                        <option value="3"
-                            {{ request()->get('kelas') == 3 ? 'selected' : '' }}>
-                        3</option>
-                        <option value="4"
-                            {{ request()->get('kelas') == 4 ? 'selected' : '' }}>
-                        4</option>
-                        <option value="5"
-                            {{ request()->get('kelas') == 5 ? 'selected' : '' }}>
-                        5</option>
-                        <option value="6"
-                            {{ request()->get('kelas') == 6 ? 'selected' : '' }}>
-                        6</option>
+                        <option value="2" {{ request()->get('kelas') == 2 ? 'selected' : '' }}>
+                            2</option>
+                        <option value="3" {{ request()->get('kelas') == 3 ? 'selected' : '' }}>
+                            3</option>
+                        <option value="4" {{ request()->get('kelas') == 4 ? 'selected' : '' }}>
+                            4</option>
+                        <option value="5" {{ request()->get('kelas') == 5 ? 'selected' : '' }}>
+                            5</option>
+                        <option value="6" {{ request()->get('kelas') == 6 ? 'selected' : '' }}>
+                            6</option>
                     </select>
                 </div>
                 <div>
-                    <label for="komponen" class="block text-sm font-medium text-gray-700">Komponen:</label>
+                    <label for="komponen" class="block text-sm font-medium text-gray-700">Komponen Kegiatan</label>
                     <select name="id_komponen" id="komponen"
                         class="mt-1 p-2 block w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                        <option value="">Pilih Komponen</option>
+                        <option value="">Pilih Komponen Kegiatan</option>
                         @foreach ($daftarKomponen as $komponen)
-                            <option
-                            {{ request()->get('id_komponen') == $komponen->id ? 'selected' : '' }}
-                            value="{{ $komponen->id }}">{{ $komponen->nama }}</option>
+                            <option {{ request()->get('id_komponen') == $komponen->id ? 'selected' : '' }}
+                                value="{{ $komponen->id }}">{{ $komponen->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div>
-                    <label for="atribut"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Atribut</label>
+                    <label for="atribut" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                        Kegiatan</label>
                     <select name="id_atribut" id="atribut"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                     {{ $errors->has('atribut') ? 'border-red-500' : '' }}"
                         required>
-                        <option value="" disabled selected>Pilih atribut</option>
+                        <option value="" disabled selected>Pilih Jenis Kegiatan</option>
                     </select>
                 </div>
             </div>
             <div class="mt-4">
                 <button type="submit"
                     class="bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Terapkan Filter
+                    Tampilkan
                 </button>
             </div>
         </form>
@@ -88,28 +80,58 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Siswa</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Nama Kegiatan</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Guru Pembimbing</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Status</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Keterangan</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+
+                        <div class="flex flex-wrap">
+                            @forelse ($dokumentasi as $d)
+                                <div class="w-1/3 p-2">
+                                    <div class="relative">
+                                        <img src="{{ asset('storage/absensi/' . $d->foto) }}" alt="{{ $d->foto }}"
+                                            class="w-full h-48 object-cover rounded-lg">
+                                    </div>
+                                </div>
+                            @empty
+
+                            @endforelse
+                        </div>
+
                         @forelse ($daftarAbsensi as $absensi)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <input type="text"
-                                    class="hidden"
-                                    name="siswa[]" value="{{ $absensi->id }}">
+                                <td class="px-3">
+                                    <input type="text" class="hidden" name="siswa[]" value="{{ $absensi->id }}">
 
-                                    <input
-                                    type="text"
-                                    class="bg-gray-50 w-1/2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    readonly value="{{ $absensi->siswa }}"
-                                    >
+                                    <input type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        readonly value="{{ $absensi->siswa }}">
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-3 py-2">
+                                    <input type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        readonly value="{{ $absensi->kegiatan }}">
+                                </td>
+                                <td class="px-3 py-2">
+                                    <select name="id_guru_pembimbing[]"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        <option value="" disabled selected>Pilih Guru Pembimbing</option>
+                                        @foreach ($daftarGuru as $guru)
+                                            <option value="{{ $guru->id }}"
+                                                {{ $absensi->id_guru_pembimbing == $guru->id ? 'selected' : '' }}>
+                                                {{ $guru->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td class="px-3 py-2">
                                     <select name="status[]"
-                                        class="bg-gray-50 w-1/2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option value="Hadir" @if ($absensi->status === 'Hadir') selected @endif>Hadir
                                         </option>
                                         <option value="Sakit" @if ($absensi->status === 'Sakit') selected @endif>Sakit
@@ -120,15 +142,15 @@
                                         </option>
                                     </select>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-3 py-2">
                                     <input type="text" name="keterangan[]"
-                                    class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    value="{{ $absensi->keterangan }}">
+                                        class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        value="{{ $absensi->keterangan }}">
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap">
+                                <td colspan="3" class="px-3 py-2">
                                     <div class="text-center text-gray-500">
                                         Belum di absen
                                     </div>
@@ -138,11 +160,11 @@
                     </tbody>
                 </table>
 
-                @if(count($daftarAbsensi) > 0)
-                <button type="submit"
-                    class="m-5 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">
-                    Simpan Perubahan
-                </button>
+                @if (count($daftarAbsensi) > 0)
+                    <button type="submit"
+                        class="m-5 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">
+                        Simpan Perubahan
+                    </button>
                 @endif
             </form>
         </div>
@@ -165,10 +187,12 @@
                         atribut.append('<option value="" disabled selected>Pilih Atribut</option>');
                         $.each(data.data, function(index, value) {
                             if ({{ request()->get('id_atribut', 0) }} == value.id) {
-                                atribut.append('<option value="' + value.id + '" selected>' + value.nama +
+                                atribut.append('<option value="' + value.id + '" selected>' +
+                                    value.nama +
                                     '</option>');
                             } else {
-                                atribut.append('<option value="' + value.id + '">' + value.nama +
+                                atribut.append('<option value="' + value.id + '">' + value
+                                    .nama +
                                     '</option>');
                             }
                         });

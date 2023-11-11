@@ -9,6 +9,7 @@ class Siswa extends BaseSiswa
 {
     use  HasFactory;
 
+    protected $locale = 'id';
 	protected $fillable = [
 		'nama',
 		'kelas',

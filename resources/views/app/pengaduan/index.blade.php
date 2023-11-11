@@ -60,13 +60,13 @@
                         <td class="px-6 py-4 text-center">
                             {{ $pengaduan->nama }}
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-6 py-4">
                             <span
                                 class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
                                 {{ $pengaduan->kategori_pengaduan->kategori }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-6 py-4">
                             {{ $pengaduan->keterangan }}
                         </td>
                         <td class="px-6 py-4 text-center">
@@ -89,12 +89,14 @@
                                     </select>
                                 </form>
 
+                                @role('OPERATOR_SEKOLAH')
                                 <form action="{{ route('app.pengaduan.destroy', $pengaduan->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="w-20 confirm-button focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
                                 </form>
+                                @endrole
                             </div>
                         </td>
                     </tr>

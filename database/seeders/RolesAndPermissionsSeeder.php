@@ -21,7 +21,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $operatorSekolah = Role::create(['name' => UserRole::OPERATOR_SEKOLAH]);
         $operatorSekolah->givePermissionTo(Permission::all());
 
-        Role::create(['name' => UserRole::KEPALA_SEKOLAH]);
         Role::create(['name' => UserRole::GURU_BK]);
         Role::create(['name' => UserRole::GURU_PEMBIMBING]);
 

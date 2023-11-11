@@ -40,7 +40,6 @@ class UserController extends Controller
     {
         $roles = [
             UserRole::OPERATOR_SEKOLAH,
-            UserRole::KEPALA_SEKOLAH,
             UserRole::GURU_PEMBIMBING,
             UserRole::GURU_BK,
         ];

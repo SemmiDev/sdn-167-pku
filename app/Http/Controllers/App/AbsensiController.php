@@ -5,6 +5,8 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Base\Komponen;
+use App\Models\Dokumentasi;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -35,14 +37,22 @@ class AbsensiController extends Controller
             ->select('absensi.*', 'komponen.nama as komponen', 'siswa.nama as siswa', 'atribut.nama as atribut')
             ->get();
 
+        $dokumentasi = [];
+        if (!empty($daftarAbsensi)) {
+            $firstItem = $daftarAbsensi->first();
+            $dokumentasi = Dokumentasi::where('id_absensi', $firstItem->id)->get();
+        }
+
         $daftarKomponen = Komponen::latest()->get();
-        return view('app.absensi.index', compact('daftarAbsensi', 'daftarKomponen'));
+        $daftarGuru = Guru::latest()->get();
+        return view('app.absensi.index', compact('daftarAbsensi', 'daftarKomponen', 'daftarGuru', 'dokumentasi'));
     }
 
     public function create()
     {
         $daftarKomponen = Komponen::latest()->get();
-        return view('app.absensi.create', compact('daftarKomponen'));
+        $daftarGuru = Guru::latest()->get();
+        return view('app.absensi.create', compact('daftarKomponen', 'daftarGuru'));
     }
 
     public function store(Request $request)
@@ -54,21 +64,39 @@ class AbsensiController extends Controller
             $id_atribut = $request->id_atribut;
             $kegiatan = $request->kegiatan;
             $tanggal = $request->tanggal;
+            $guru_pembimbing = $request->guru_pembimbing;
 
             $siswa = $request->siswa;
             $status = $request->status;
             $keterangan = $request->keterangan;
 
+            $daftarNamaFoto = [];
+            $dokumentasi = $request->file('dokumentasi');
+            foreach ($dokumentasi as $file) {
+                $namaFoto = time() .'-' . uniqid() . '.' . $file->extension();
+                $file->storeAs('public/absensi', $namaFoto);
+                $daftarNamaFoto[] = $namaFoto;
+            }
+
+
             foreach ($siswa as $k => $v) {
-                Absensi::create([
+                $absensi = Absensi::create([
                     'id_siswa' => $v,
                     'id_komponen' => $id_komponen,
                     'id_atribut' => $id_atribut,
                     'kegiatan' => $kegiatan,
                     'status' => $status[$k],
                     'keterangan' => $keterangan[$k],
-                    'tanggal' => date('Y-m-d', strtotime($tanggal))
+                    'tanggal' => date('Y-m-d', strtotime($tanggal)),
+                    'id_guru_pembimbing' => $guru_pembimbing,
                 ]);
+
+                foreach ($daftarNamaFoto as $namaFoto) {
+                    Dokumentasi::create([
+                        'id_absensi' => $absensi->id,
+                        'foto' => $namaFoto,
+                    ]);
+                }
             }
 
             DB::commit();

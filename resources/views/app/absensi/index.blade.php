@@ -150,7 +150,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="px-3 py-2">
+                                <td colspan="5" class="px-3 py-2">
                                     <div class="text-center text-gray-500">
                                         Belum di absen
                                     </div>

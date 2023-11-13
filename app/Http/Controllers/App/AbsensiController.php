@@ -38,7 +38,7 @@ class AbsensiController extends Controller
             ->get();
 
         $dokumentasi = [];
-        if (!empty($daftarAbsensi)) {
+        if (count($daftarAbsensi) != 0) {
             $firstItem = $daftarAbsensi->first();
             $dokumentasi = Dokumentasi::where('id_absensi', $firstItem->id)->get();
         }

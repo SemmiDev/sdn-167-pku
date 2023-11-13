@@ -15,9 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_kategori')->constrained('kategori_pengaduan');
             $table->string('nama'); // nama orang tua / pengadu
+            $table->string('wa');
             $table->text('foto');
             $table->text('keterangan')->nullable();
-            $table->enum('status', ['proses', 'belum', 'selesai'])->default('belum');
+            $table->date('tanggal_kejadian')->nullable(true);
+            $table->time('jam_kejadian')->nullable(true);
+            $table->longText('sanksi')->nullable(true);
+            $table->longText('penyelesaian')->nullable(true);
+
             $table->timestamps();
         });
     }

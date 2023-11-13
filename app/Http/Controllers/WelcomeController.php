@@ -71,10 +71,12 @@ class WelcomeController extends Controller
         $request->validate([
             'nama' => 'required',
             'id_kategori' => 'required',
+            'wa'=> 'required',
             'foto' => 'required|image|max:3072',
             'keterangan' => 'required',
         ], [
             'nama' => 'Nama harus diisi',
+            'wa' => 'Nomor WhatsApp harus diisi',
             'id_kategori.required' => 'Kategori harus dipilih',
             'foto.required' => 'Foto harus diisi',
             'foto.image' => 'Foto harus berupa gambar',
@@ -85,16 +87,20 @@ class WelcomeController extends Controller
         $foto = $request->file('foto');
         $namaFoto = time() . '.' . $foto->extension();
         $foto->storeAs('public/pengaduan', $namaFoto);
+        $jamKejadian = $request->jam_kejadian;
+        $tanggalKejadian = $request->tanggal_kejadian;
 
         Pengaduan::create([
             'nama' => $request->nama,
             'id_kategori' => $request->id_kategori,
             'foto' => $namaFoto,
+            'wa' => $request->input('wa'),
             'keterangan' => $request->keterangan,
-            'status' => 'belum',
+            'jam_kejadian' => $jamKejadian,
+            'tanggal_kejadian' => $tanggalKejadian,
         ]);
 
-        return redirect()->route('guest.pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Pengaduan berhasil ditambahkan, Pihak sekolah akan menghubungi anda melalui WhatsApp');
     }
 
     public function pengumumanIndex()

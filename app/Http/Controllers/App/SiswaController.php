@@ -20,12 +20,15 @@ class SiswaController extends Controller
             $request->validate([
                 'nama' => 'required',
                 'kelas' => 'required|in:1,2,3,4,5,6',
+                'nisn' => 'required|unique:siswa,nisn',
                 'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                 'alamat' => 'nullable',
                 'nama_ortu' => 'nullable',
                 'no_telepon_ortu' => 'nullable',
             ], [
                 'nama.required' => 'Nama harus diisi',
+                'nisn.required' => 'NISN harus diisi',
+                'nisn.unique' => 'NISN sudah terdaftar',
                 'kelas.required' => 'Kelas harus diisi',
                 'kelas.in' => 'Kelas harus 1, 2, 3, 4, 5, atau 6',
                 'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
@@ -35,6 +38,7 @@ class SiswaController extends Controller
             Siswa::create([
                 'nama' => $request->nama,
                 'kelas' => $request->kelas,
+                'nisn' => $request->nisn,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'alamat' => $request->alamat,
                 'nama_ortu' => $request->nama_ortu,
@@ -77,6 +81,7 @@ class SiswaController extends Controller
             $siswa->update([
                 'nama' => $request->nama,
                 'kelas' => $request->kelas,
+                'nisn' => $request->nisn,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'alamat' => $request->alamat,
                 'nama_ortu' => $request->nama_ortu,

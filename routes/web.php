@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/absensi-index', [WelcomeController::class, 'absensiIndex'])->name('guest.absensi.index');
-Route::get('/pengaduan-index', [WelcomeController::class, 'pengaduanIndex'])->name('guest.pengaduan.index');
 Route::get('/pengaduan-create', [WelcomeController::class, 'pengaduanCreate'])->name('guest.pengaduan.create');
 Route::post('/pengaduan-store', [WelcomeController::class, 'pengaduanStore'])->name('guest.pengaduan.store');
 Route::get('/pengumuman-index', [WelcomeController::class, 'pengumumanIndex'])->name('guest.pengumuman.index');
@@ -67,6 +66,7 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
     });
 
     Route::get('/pengaduan', [App\Http\Controllers\App\PengaduanController::class, 'index'])->name('app.pengaduan.index');
+    Route::get('/pengaduan/{pengaduan}/edit', [App\Http\Controllers\App\PengaduanController::class, 'edit'])->name('app.pengaduan.edit');
     Route::get('/pengaduan/create', [App\Http\Controllers\App\PengaduanController::class, 'create'])->name('app.pengaduan.create');
     Route::post('/pengaduan/store', [App\Http\Controllers\App\PengaduanController::class, 'store'])->name('app.pengaduan.store');
     Route::put('/pengaduan/{pengaduan}/update', [App\Http\Controllers\App\PengaduanController::class, 'update'])->name('app.pengaduan.update');

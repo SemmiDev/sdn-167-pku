@@ -9,7 +9,16 @@
         <div class="mb-6">
             <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                 Pelapor</label>
-            <input type="text" name="nama" placeholder="Ucup Sirucup" id="nama"
+            <input
+                type="text" name="nama" placeholder="Ucup Sirucup" id="nama"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                autofocus
+                required>
+        </div>
+
+        <div class="mb-6">
+            <label for="wa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Telepon</label>
+            <input type="tel" name="wa" placeholder="082387325991" id="wa"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
         </div>
@@ -35,6 +44,28 @@
                 placeholder="Naufal Abdurahman Madani kelas 6 melakukan kekerasan terhadap anak saya" required></textarea>
         </div>
 
+        @php
+            date_default_timezone_set('Asia/Jakarta');
+        @endphp
+
+        <div class="mb-6">
+            <label for="tanggal_kejadian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Kejadian</label>
+            <input type="date"
+                   value="{{ date('Y-m-d') }}"
+                   name="tanggal_kejadian" placeholder="Ucup Sirucup" id="tanggal_kejadian"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required>
+        </div>
+
+        <div class="mb-6">
+            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jam Kejadian</label>
+            <input type="time"
+                   value="{{ date('H:i') }}"
+                   name="jam_kejadian" placeholder="Ucup Sirucup" id="jam_kejadian"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required>
+        </div>
+
         <div class="flex items-center justify-center w-full mb-5">
             <label for="dropzone-file"
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -55,8 +86,6 @@
             </label>
         </div>
 
-        <a href="{{ route('guest.pengaduan.index') }}"
-            class="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Kembali</a>
         <button type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Kirim Pengaduan

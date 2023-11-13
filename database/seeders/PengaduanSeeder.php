@@ -29,16 +29,5 @@ class PengaduanSeeder extends Seeder
         DB::table('kategori_pengaduan')->insert([
             'kategori' => 'Lainnya',
         ]);
-
-
-        DB::table('pengaduan')->insert([
-            'nama' => 'Siti',
-            'keterangan' => 'Anak saya acen kurecen kelas 6, di bully oleh donny dan teman-temannya',
-            'foto' => 'https://picsum.photos/seed/' . 1 . '/200/300',
-            'id_kategori' => 2,
-            'status' => 'belum',
-            'created_at' => date('Y-m-d H:i:s', mt_rand(1672531200, 1704067200)),
-            'updated_at' => date('Y-m-d H:i:s', mt_rand(1672531200, 1704067200)),
-        ]);
     }
 }

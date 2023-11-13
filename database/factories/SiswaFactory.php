@@ -19,6 +19,7 @@ class SiswaFactory extends Factory
         return [
             'nama' => $this->faker->name(),
             'kelas' => $this->faker->numberBetween(1, 6),
+            'nisn' => $this->faker->numerify('######'),
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'alamat' => $this->faker->address(),
             'nama_ortu' => $this->faker->name(),

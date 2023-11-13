@@ -13,6 +13,7 @@ class Siswa extends BaseSiswa
 	protected $fillable = [
 		'nama',
 		'kelas',
+		'nisn',
 		'jenis_kelamin',
 		'alamat',
 		'nama_ortu',

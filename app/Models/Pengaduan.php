@@ -10,7 +10,11 @@ class Pengaduan extends BasePengaduan
 		'id_kategori',
 		'nama',
 		'foto',
-		'status',
-		'keterangan'
+		'wa',
+        'jam_kejadian',
+        'tanggal_kejadian',
+		'keterangan',
+        'sanksi',
+        'penyelesaian'
 	];
 }

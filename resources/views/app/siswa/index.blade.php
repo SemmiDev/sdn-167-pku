@@ -18,7 +18,7 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                        Nama
+                        NISN & Nama  
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
                         Kelas
@@ -49,6 +49,8 @@
                         </td>
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $siswa->nisn}}
+                            <br>
                             {{ $siswa->nama }}
                         </th>
                         <td class="px-6 py-4">
@@ -68,6 +70,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <button data-id="{{ $siswa->id }}" data-nama="{{ $siswa->nama }}"
+                                data-nisn="{{ $siswa->nisn }}"
                                 data-kelas="{{ $siswa->kelas }}" data-jenis_kelamin="{{ $siswa->jenis_kelamin }}"
                                 data-alamat="{{ $siswa->alamat }}" data-nama_ortu="{{ $siswa->nama_ortu }}"
                                 data-no_telepon_ortu="{{ $siswa->no_telepon_ortu }}"
@@ -112,6 +115,15 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white
                                 {{ $errors->has('nama') ? 'border-red-500' : '' }}"
                                     placeholder="Susanti" required>
+                            </div>
+
+                            <div>
+                                <label for="nisn"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NISN</label>
+                                <input type="text" name="nisn" id="nisn"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                {{ $errors->has('nisn') ? 'border-red-500' : '' }}"
+                                    placeholder="1234567890" required>
                             </div>
 
                             <div>
@@ -207,6 +219,15 @@
                             </div>
 
                             <div>
+                                <label for="nisn_edit"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NISN</label>
+                                <input type="text" name="nisn" id="nisn_edit"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+                                {{ $errors->has('nisn') ? 'border-red-500' : '' }}"
+                                    placeholder="1234567890" required>
+                            </div>
+
+                            <div>
                                 <label for="kelas_edit"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas</label>
                                 <input type="number" min="1" max="6" name="kelas" id="kelas_edit"
@@ -275,13 +296,16 @@
         $('.edit-siswa').click(function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
+            var nisn = $(this).data('nisn');
             var kelas = $(this).data('kelas');
             var jenis_kelamin = $(this).data('jenis_kelamin');
             var alamat = $(this).data('alamat');
             var nama_ortu = $(this).data('nama_ortu');
             var no_telepon_ortu = $(this).data('no_telepon_ortu');
 
+
             $('#nama_edit').val(nama);
+            $('#nisn_edit').val(nisn);
             $('#kelas_edit').val(kelas);
             $('#jenis_kelamin_edit').val(jenis_kelamin);
             $('#alamat_edit').val(alamat);

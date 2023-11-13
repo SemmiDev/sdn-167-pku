@@ -28,6 +28,8 @@ class PengaduanController extends Controller
             'nama' => 'required',
             'id_kategori' => 'required',
             'foto' => 'required|image|max:3072',
+            'jam_kejadian' => 'nullable',
+            'tanggal_kejadian' => 'nullable',
             'keterangan' => 'required',
         ], [
             'nama' => 'Nama harus diisi',
@@ -41,24 +43,34 @@ class PengaduanController extends Controller
         $foto = $request->file('foto');
         $namaFoto = time() . '.' . $foto->extension();
         $foto->storeAs('public/pengaduan', $namaFoto);
+        $jamKejadian = $request->jam_kejadian;
+        $tanggalKejadian = $request->tanggal_kejadian;
 
         Pengaduan::create([
             'nama' => $request->nama,
             'id_kategori' => $request->id_kategori,
             'foto' => $namaFoto,
             'keterangan' => $request->keterangan,
-            'status' => 'belum',
+            'jam_kejadian' => $jamKejadian,
+            'tanggal_kejadian' => $tanggalKejadian,
         ]);
 
-        return redirect()->route('app.pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Pengaduan berhasil ditambahkan');
+    }
+
+    public function edit(Pengaduan $pengaduan)
+    {
+        $daftarKategoriPengaduan = KategoriPengaduan::all();
+        return view('app.pengaduan.edit', compact('pengaduan', 'daftarKategoriPengaduan'));
     }
 
     public function update(Request $request, Pengaduan $pengaduan)
     {
-        $pengaduan->status = $request->status;
-        $pengaduan->save();
+        $pengaduan->sanksi = $request->sanksi;
+        $pengaduan->penyelesaian = $request->penyelesaian;
 
-        return redirect()->route('app.pengaduan.index')->with('success', 'Pengaduan berhasil diubah');
+        $pengaduan->save();
+        return redirect()->back()->with('success', 'Pengaduan berhasil diperbarui');
     }
 
     public function destroy(Pengaduan $pengaduan)
